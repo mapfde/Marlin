@@ -526,9 +526,9 @@
   //#define DEFAULT_Kd 440
 
   // Anycubic Kossel - run 'M106 S255' & 'M303 E0 C10 S200'
-  #define DEFAULT_Kp 8.15
-  #define DEFAULT_Ki 0.46
-  #define DEFAULT_Kd 35.91
+  #define DEFAULT_Kp 10.02
+  #define DEFAULT_Ki 0.56
+  #define DEFAULT_Kd 44.78
 
 #endif // PIDTEMP
 
@@ -1136,7 +1136,7 @@
  * Specify a Probe position as { X, Y, Z }
  */
 #if ANYCUBIC_PROBE_VERSION == 2
-  #define NOZZLE_TO_PROBE_OFFSET { 0, 0, -16.8 }
+  #define NOZZLE_TO_PROBE_OFFSET { 0, 0, -16.125 }
 #elif ANYCUBIC_PROBE_VERSION == 1
   #define NOZZLE_TO_PROBE_OFFSET { 0, 0, -19.0 }
 #else
