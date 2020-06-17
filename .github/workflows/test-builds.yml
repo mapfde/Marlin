@@ -68,6 +68,7 @@ jobs:
         - rumba32_mks
         - mks_robin_pro
         - STM32F103RET6_creality
+        - LERDGEX
 
         # Put lengthy tests last
 
