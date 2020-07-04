@@ -508,6 +508,9 @@ public:
   #endif
 
   #if HAS_LCD_MENU
+    #if LCD_TIMEOUT_TO_STATUS
+      static millis_t return_to_status_ms;
+    #endif
 
     #if ENABLED(TOUCH_BUTTONS)
       static uint8_t touch_buttons;
@@ -640,7 +643,7 @@ public:
     #endif
 
     static void update_buttons();
-    static inline bool button_pressed() { return BUTTON_CLICK(); }
+    static inline bool button_pressed() { return BUTTON_CLICK() || TERN(TOUCH_SCREEN, touch_pressed(), false); }
     #if EITHER(AUTO_BED_LEVELING_UBL, G26_MESH_VALIDATION)
       static void wait_for_release();
     #endif
@@ -675,6 +678,10 @@ public:
 
   #endif
 
+  #if ENABLED(TOUCH_SCREEN_CALIBRATION)
+    static void touch_calibration();
+  #endif
+
 private:
 
   #if HAS_DISPLAY
@@ -688,6 +695,12 @@ private:
       static constexpr bool defer_return_to_status = false;
     #endif
     static void draw_status_screen();
+    #if HAS_GRAPHICAL_TFT
+      static void tft_idle();
+      #if ENABLED(TOUCH_SCREEN)
+        static bool touch_pressed();
+      #endif
+    #endif
   #endif
 };
 
