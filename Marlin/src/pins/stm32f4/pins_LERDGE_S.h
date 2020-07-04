@@ -30,7 +30,7 @@
 #define STEP_TIMER 4
 #define TEMP_TIMER 2
 
-//#define I2C_EEPROM
+#define I2C_EEPROM
 
 //
 // Servos
