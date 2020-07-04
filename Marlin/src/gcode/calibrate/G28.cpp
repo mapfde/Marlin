@@ -46,6 +46,9 @@
 #endif
 
 #include "../../lcd/ultralcd.h"
+#if ENABLED(DWIN_CREALITY_LCD)
+  #include "../../lcd/dwin/dwin.h"
+#endif
 
 #if HAS_L64XX                         // set L6470 absolute position registers to counts
   #include "../../libs/L64XX/L64XX_Marlin.h"
@@ -200,14 +203,16 @@
  */
 void GcodeSuite::G28() {
 
-#if ENABLED(LASER_MOVE_G28_OFF)
-  cutter.set_inline_enabled(false);       // turn off laser
-#endif
-
   if (DEBUGGING(LEVELING)) {
     DEBUG_ECHOLNPGM(">>> G28");
     log_machine_info();
   }
+
+  #if ENABLED(LASER_MOVE_G28_OFF)
+    cutter.set_inline_enabled(false);       // turn off laser
+  #endif
+
+  TERN_(DWIN_CREALITY_LCD, HMI_flag.home_flag = true);
 
   #if ENABLED(DUAL_X_CARRIAGE)
     bool IDEX_saved_duplication_state = extruder_duplication_enabled;
@@ -245,6 +250,9 @@ void GcodeSuite::G28() {
   #endif
 
   TERN_(CNC_WORKSPACE_PLANES, workspace_plane = PLANE_XY);
+
+  // Count this command as movement / activity
+  reset_stepper_timeout();
 
   #define HAS_CURRENT_HOME(N) (defined(N##_CURRENT_HOME) && N##_CURRENT_HOME != N##_CURRENT)
   #if HAS_CURRENT_HOME(X) || HAS_CURRENT_HOME(X2) || HAS_CURRENT_HOME(Y) || HAS_CURRENT_HOME(Y2)
@@ -474,6 +482,8 @@ void GcodeSuite::G28() {
   #endif
 
   ui.refresh();
+
+  TERN_(DWIN_CREALITY_LCD, DWIN_CompletedHoming());
 
   report_current_position();
 

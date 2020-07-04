@@ -21,7 +21,7 @@
  */
 #pragma once
 
-#ifndef TARGET_STM32F4
+#ifndef STM32F4
   #error "Oops! Select an STM32F4 board in 'Tools > Board.'"
 #elif HOTENDS > 1 || E_STEPPERS > 1
   #error "BIGTREE BTT002 V1.0 supports up to 1 hotends / E-steppers."
@@ -237,9 +237,15 @@
 
   // Alter timing for graphical display
   #if HAS_GRAPHICAL_LCD
-    #define BOARD_ST7920_DELAY_1 DELAY_NS(96)
-    #define BOARD_ST7920_DELAY_2 DELAY_NS(48)
-    #define BOARD_ST7920_DELAY_3 DELAY_NS(600)
+    #ifndef BOARD_ST7920_DELAY_1
+      #define BOARD_ST7920_DELAY_1 DELAY_NS(96)
+    #endif
+    #ifndef BOARD_ST7920_DELAY_2
+      #define BOARD_ST7920_DELAY_2 DELAY_NS(48)
+    #endif
+    #ifndef BOARD_ST7920_DELAY_3
+      #define BOARD_ST7920_DELAY_3 DELAY_NS(600)
+    #endif
   #endif
 
 #endif // HAS_SPI_LCD
