@@ -30,7 +30,7 @@
 #define STEP_TIMER 4
 #define TEMP_TIMER 2
 
-//#define I2C_EEPROM
+#define I2C_EEPROM
 
 //
 // Servos
@@ -107,9 +107,9 @@
 // Expansion board with second max6675
 // Warning: Some boards leave the slot unpopulated.
 
-//#define MAX6675_SCK2_PIN                  PB3   // max6675 datasheet: SCK pin, found with multimeter, not tested
-//#define MAX6675_DO2_PIN                   PB4   // max6675 datasheet: SO pin, found with multimeter, not tested
-//#define MAX6675_SS2_PIN                   PF1   // max6675 datasheet: /CS pin, found with multimeter, not tested
+#define MAX6675_SCK2_PIN                  PB3   // max6675 datasheet: SCK pin, found with multimeter, not tested
+#define MAX6675_DO2_PIN                   PB4   // max6675 datasheet: SO pin, found with multimeter, not tested
+#define MAX6675_SS2_PIN                   PF1   // max6675 datasheet: /CS pin, found with multimeter, not tested
 
 //
 // Heaters / Fans
@@ -136,11 +136,11 @@
 // LED / Lighting
 //
 //Lerdge-S board has two LED connectors (this is the one on the mainboard)
-#define CASE_LIGHT_PIN                      PC7   //confirmed
+//#define CASE_LIGHT_PIN                      PC7   //confirmed
 
 //on the dual extrusion addon board is a RGB connector
-#define RGB_LED_R_PIN                       PC7   // Shared with the mainboard LED light connector (CASE_LIGHT_PIN), confirmed
-#define RGB_LED_G_PIN                       PB0   //confirmed
+#define RGB_LED_G_PIN                       PC7   // Shared with the mainboard LED light connector (CASE_LIGHT_PIN), confirmed
+#define RGB_LED_R_PIN                       PB0   //confirmed
 #define RGB_LED_B_PIN                       PB1   //confirmed
 
 //
@@ -201,7 +201,7 @@
 #define TFT_CS_PIN                          PD7   // TFT works
 #define TFT_RS_PIN                          PD11  // TFT works
 
-// There is touch, but calibration is off
+// Touch works fine
 #define TOUCH_CS_PIN                        PB6
 #define TOUCH_SCK_PIN                       PB3
 #define TOUCH_MOSI_PIN                      PB5
